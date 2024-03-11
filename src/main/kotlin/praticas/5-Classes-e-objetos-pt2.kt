@@ -37,16 +37,28 @@ open class Funcionario(val nome: String, val idade: Int) {
     init {
         println("Novo funcionário registrado: $nome, $idade anos.")
     }
-    fun apresentar(): String {
+    open fun apresentar(): String {
         return "Olá, meu nome é $nome e tenho $idade anos"
     }
 }
 
-class Gerente(nome: String, idade: Int, val setor: String) : Funcionario(nome, idade)
+class Gerente(nome: String, idade: Int, val setor: String) : Funcionario(nome, idade){
+    override fun apresentar(): String {
+        return "Olá, meu nome é $nome e tenho $idade anos e trabalho no setor de $setor"
+    }
+}
 
-class Desenvolvedor(nome: String, idade: Int, val linguagem: String) : Funcionario(nome, idade)
+class Desenvolvedor(nome: String, idade: Int, val linguagem: String) : Funcionario(nome, idade){
+    override fun apresentar(): String {
+        return "Olá, meu nome é $nome e tenho $idade anos e trabalho com a linguagem $linguagem"
+    }
+}
 
-class Analista(nome: String, idade: Int, val area: String) : Funcionario(nome, idade)
+class Analista(nome: String, idade: Int, val area: String) : Funcionario(nome, idade){
+    override fun apresentar(): String {
+        return "Olá, meu nome é $nome e tenho $idade anos e sou especialista na área de $area"
+    }
+}
 
 fun main() {
     println("Sistema de registro de funcionários")
