@@ -1,3 +1,5 @@
+package br.ifpb.pdm.praticas
+
 /** SISTEMA DE REGISTROS DE FUNCIONÁRIOS
  *
  * Desenvolva um sistema de registro de funcionários para uma empresa.
@@ -30,3 +32,41 @@
  * 8. Utilize o typecast (is e as) para verificar o tipo de cada funcionário na lista e chamar o método Apresentar
  * correspondente.
  */
+
+open class Funcionario(val nome: String, val idade: Int) {
+    init {
+        println("Novo funcionário registrado: $nome, $idade anos.")
+    }
+    fun apresentar(): String {
+        return "Olá, meu nome é $nome e tenho $idade anos"
+    }
+}
+
+class Gerente(nome: String, idade: Int, val setor: String) : Funcionario(nome, idade)
+
+class Desenvolvedor(nome: String, idade: Int, val linguagem: String) : Funcionario(nome, idade)
+
+class Analista(nome: String, idade: Int, val area: String) : Funcionario(nome, idade)
+
+fun main() {
+    println("Sistema de registro de funcionários")
+
+    val funcionarios = mutableListOf<Funcionario>(
+        Gerente("João", 35, "TI"),
+        Desenvolvedor("Maria", 28, "Kotlin"),
+        Analista("José", 30, "BI")
+    )
+
+    var tipo = ""
+
+    funcionarios.forEach {
+        tipo = when (it) {
+            is Gerente -> "Gerente"
+            is Desenvolvedor -> "Desenvolvedor"
+            is Analista -> "Analista"
+            else -> "Funcionário"
+        }
+
+        println("${it.apresentar()} e trabalho como ${tipo}.")
+    }
+}
